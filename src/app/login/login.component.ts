@@ -8,6 +8,9 @@ import {LoginService,Credentials} from './login.service';
 })
 export class LoginComponent implements OnInit {
   data:Credentials[]
+  username:string
+  password:string
+  
   constructor(private _login_service: LoginService) {
     _login_service.getCredentials().subscribe(this.setData);
    }
