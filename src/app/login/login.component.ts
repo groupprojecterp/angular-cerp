@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from './login.service';
+import {LoginService,Credentials} from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +7,15 @@ import {LoginService} from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private _login_service: LoginService) { }
+  data:Credentials[]
+  constructor(private _login_service: LoginService) {
+    _login_service.getCredentials().subscribe(this.setData);
+   }
+   
+  setData(data){
+    this.data=data;
+  }
+  
 
   ngOnInit() {
   }

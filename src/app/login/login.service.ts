@@ -4,14 +4,14 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class LoginService {
-  url:string = 'src/app/login/login_data.json';
+  url:string = '/assets/data.json';
   constructor(private _http:HttpClient) { }
   getCredentials(){
     return this._http.get<Credentials[]>(this.url);
   }
 
 }
-interface Credentials{
+export interface Credentials{
   username:string;
   password:string;
 }
