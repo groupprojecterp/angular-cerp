@@ -4,10 +4,12 @@ import { BooksearchComponent } from './booksearch/booksearch.component';
 import { BookIssueComponent } from './book-issue/book-issue.component';
 import { BookMenuComponent } from './book-menu/book-menu.component';
 import { BooksearchService } from './booksearch/booksearch.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports:[BooksearchComponent],
   declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksearchService,BooksData} from './booksearch.service';
+
 @Component({
   selector: 'app-booksearch',
   templateUrl: './booksearch.component.html',
@@ -9,32 +10,31 @@ export class BooksearchComponent implements OnInit {
   booksData:BooksData[]
   booksSearch:BooksData[]
   bookEntered:string
-
+  isClicked:boolean
   constructor(private _search:BooksearchService) {
-    
-    _search.getBooks().subscribe(this.setData);
-  
+    this._search.getBooks().subscribe(data=>this.booksSearch=data);
+      
    }
-   
+   clicked(){
+     this.isClicked = true;
+   }
    find(){
-     console.log(this.booksData[0])
+     this._search.getBooks().subscribe(data=>this.find_book(data,this.bookEntered));
    }
-   setData(data){
-     this.booksData = new Array();
+   find_book(data,book){
+     this.booksSearch=new Array();
      for(let i=0;i<data.length;i++){
-      this.booksData.push({
-        author: data[i].author,
-        country: data[i].country,
-        imageLink: data[i].imageLink,
-        language: data[i].language,
-        link: data[i].link, 
-        pages: data[i].pages,
-        title: data[i].title,
-        year: data[i].year
-        
-      });
+       if(data[i].title.includes(book)){
+         this.booksSearch.push(data[i]);
+       }
      }
-     this.booksSearch=this.booksData;
+
+   }
+
+ 
+   setData(data){
+     this._search.getBooks().subscribe(data=>this.booksData=data);
+     
      
    }
 

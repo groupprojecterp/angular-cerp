@@ -11,7 +11,7 @@ export class BooksearchService {
   }
 
 }
-export interface BooksData{
+export class BooksData{
     
     author: string
     country: string
