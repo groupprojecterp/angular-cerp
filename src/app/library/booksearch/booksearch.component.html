@@ -1,0 +1,6 @@
+<input placeholder=' book name' (click)='find()'/>
+<ol>
+  <li *ngFor='let i of booksSearch;'>
+    {{i.title}}
+  </li>
+</ol>
