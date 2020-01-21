@@ -3,11 +3,16 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class BooksearchService {
   url = 'assets/books.json';
+  clickedTitle:string
   constructor(private _http:HttpClient) {
     
-   }
+  }
   getBooks(){
     return this._http.get<BooksData>(this.url);
+  }
+
+  clickedBook(){
+    return this.clickedTitle;
   }
 
 }

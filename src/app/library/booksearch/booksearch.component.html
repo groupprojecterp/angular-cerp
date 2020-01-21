@@ -1,6 +1,6 @@
 <input placeholder=' Search' [(ngModel)]="bookEntered" (keypress)='find()' />
-<ol class='w3-container w3-pale-blue'>
-  <li *ngFor='let i of booksSearch;' class='w3-card w3-pale-yellow vertical-center' style='height:40px' (click)='clicked()'>
+<ol *ngIf='!isClicked' class='w3-container w3-pale-blue'>
+  <li *ngFor='let i of booksSearch;' class='w3-card w3-pale-yellow vertical-center' style='height:40px' (click)='clicked($event.target.innerText)'>
     {{i.title}}
   </li>
 </ol>

@@ -15,8 +15,9 @@ export class BooksearchComponent implements OnInit {
     this._search.getBooks().subscribe(data=>this.booksSearch=data);
       
    }
-   clicked(){
+   clicked(title){
      this.isClicked = true;
+     this._search.clickedTitle = title;
    }
    find(){
      this._search.getBooks().subscribe(data=>this.find_book(data,this.bookEntered));
