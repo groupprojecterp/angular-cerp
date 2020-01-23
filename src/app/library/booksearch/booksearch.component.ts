@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksearchService,BooksData} from './booksearch.service';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFirestore} from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-booksearch',
@@ -11,9 +14,10 @@ export class BooksearchComponent implements OnInit {
   booksSearch:BooksData[]
   bookEntered:string
   isClicked:boolean
-  constructor(private _search:BooksearchService) {
+  constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
     this._search.getBooks().subscribe(data=>this.booksSearch=data);
-      
+    db.list('/login').snapshotChanges().subscribe();
+    dbstore.collection('books').get().subscribe(console.);
    }
    clicked(title){
      this.isClicked = true;
