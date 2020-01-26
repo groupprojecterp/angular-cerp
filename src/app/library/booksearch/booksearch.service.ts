@@ -7,11 +7,11 @@ export class BooksearchService {
   url = 'assets/books.json';
   clickedTitle:string
   constructor(private db:AngularFireDatabase) {
-    
+   
   }
   getBooks(){
-    console.log('');
-     this.db.list('books').snapshotChanges().subscribe(console.);
+    
+    return this.db.list('/books').snapshotChanges();
      
   }
 
