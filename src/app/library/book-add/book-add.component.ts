@@ -9,9 +9,18 @@ import {BooksearchService} from '../booksearch/booksearch.service';
 export class BookAddComponent implements OnInit {
   isViewBooks:boolean;
   isAddBook:boolean;
+  title:string;
+  author:string;
+  year:number;
+  pages:number;
+
   constructor(private _search:BooksearchService) { 
     this.isAddBook = false;
     this.isViewBooks = false;
+    this.title = ''
+    this.author = ''
+    this.year = -1
+    this.pages = -1
   }
 
   ngOnInit() {
@@ -23,6 +32,16 @@ export class BookAddComponent implements OnInit {
   addBookClick(){
     this.isAddBook = !this.isAddBook
     this.isViewBooks = false;
+  }
+  addBook(){
+    if(this.title!='' && this.author!='' && this.year!=-1 && this.pages!=-1 ){
+      this._search.push({
+        title:this.title,
+        author:this.author,
+        pages:this.pages,
+        year:this.year
+        });
+    }
   }
 
 }

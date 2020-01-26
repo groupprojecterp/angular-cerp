@@ -18,6 +18,9 @@ export class BooksearchService {
   clickedBook(){
     return this.clickedTitle;
   }
+  push(obj){
+    this.db.list('books').push(obj);
+  }
 
 }
 export class BooksData{
