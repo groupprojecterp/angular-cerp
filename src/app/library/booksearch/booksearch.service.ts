@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {AngularFireDatabase} from '@angular/fire/database';
+
 @Injectable()
 export class BooksearchService {
   url = 'assets/books.json';
   clickedTitle:string
-  constructor(private _http:HttpClient) {
+  constructor(private db:AngularFireDatabase) {
     
   }
   getBooks(){
-    return this._http.get<BooksData>(this.url);
+    console.log('');
+     this.db.list('books').snapshotChanges().subscribe(console.);
+     
   }
 
   clickedBook(){

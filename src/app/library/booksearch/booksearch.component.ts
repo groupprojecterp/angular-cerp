@@ -15,16 +15,16 @@ export class BooksearchComponent implements OnInit {
   bookEntered:string
   isClicked:boolean
   constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
-    this._search.getBooks().subscribe(data=>this.booksSearch=data);
-    db.list('/login').snapshotChanges().subscribe();
-    dbstore.collection('books').get().subscribe(console.);
+    this._search.getBooks();
+    
    }
    clicked(title){
      this.isClicked = true;
      this._search.clickedTitle = title;
    }
    find(){
-     this._search.getBooks().subscribe(data=>this.find_book(data,this.bookEntered));
+     this._search.getBooks();
+     (data=>this.find_book(data,this.bookEntered));
    }
    find_book(data,book){
      this.booksSearch=new Array();
@@ -38,7 +38,7 @@ export class BooksearchComponent implements OnInit {
 
  
    setData(data){
-     this._search.getBooks().subscribe(data=>this.booksData=data);
+     this._search.getBooks();
      
      
    }
