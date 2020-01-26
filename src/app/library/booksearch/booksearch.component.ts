@@ -12,16 +12,19 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class BooksearchComponent implements OnInit {
   booksData:BooksData[]
   booksSearch:BooksData[]
+  booksKey:string[]
   bookEntered:string
   isClicked:boolean
   constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
     this._search.getBooks().subscribe(
       data=>{
         this.booksSearch = new Array();
+        
+
         for(let i=0;i<data.length;i++){
           this.booksSearch.push(data[i].payload.exportVal())
         }
-        console.log(this.booksSearch)
+        
       }
     );
     
@@ -30,6 +33,9 @@ export class BooksearchComponent implements OnInit {
    clicked(title){
      this.isClicked = true;
      this._search.clickedTitle = title;
+   }
+   delete(title){
+     this._search.delete(title);
    }
    find(){
      this._search.getBooks().subscribe
@@ -44,7 +50,6 @@ export class BooksearchComponent implements OnInit {
          
        }
      }
-
    }
 
  

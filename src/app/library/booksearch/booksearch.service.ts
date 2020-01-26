@@ -14,6 +14,19 @@ export class BooksearchService {
     return this.db.list('/books').snapshotChanges();
      
   }
+  
+  delete(title){
+    this.db.list('books').snapshotChanges().subscribe(data=>{
+        for(let i=0;i<data.length;i++){
+       
+       if(data[i].payload.exportVal().title.includes(title)){
+
+         this.db.list('books').remove(data[i].key);
+         console.log(data[i].key)
+       }
+     }
+    });
+  }
 
   clickedBook(){
     return this.clickedTitle;
@@ -26,10 +39,6 @@ export class BooksearchService {
 export class BooksData{
     
     author: string
-    country: string
-    imageLink: string
-    language: string
-    link: string
     pages: number
     title: string
     year: number

@@ -41,6 +41,10 @@ export class BookAddComponent implements OnInit {
         pages:this.pages,
         year:this.year
         });
+      this.title  = ''
+      this.author = ''
+      this.pages  = null
+      this.year   = null
     }
   }
 
