@@ -2,7 +2,7 @@
 <ol *ngIf='!isClicked' class='w3-container w3-pale-blue'>
   <li *ngFor='let i of booksSearch;' class='w3-card w3-pale-yellow vertical-center w3-cell-row' style='height:40px' >
     &nbsp;<p class='w3-cell' (click)='clicked(i.title)'>{{i.title}}</p>
-    &nbsp;&nbsp;&nbsp;&nbsp;<button class='w3-button w3-red w3-cell' (click)='delete(i.title)'>-</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button class='w3-button w3-red w3-cell' (click)='delete(i.)'>-</button>
   </li>
 </ol>
 <app-book-issue *ngIf='isClicked'></app-book-issue>

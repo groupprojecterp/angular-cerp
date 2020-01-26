@@ -22,7 +22,8 @@ export class BooksearchService {
        if(data[i].payload.exportVal().title.includes(title)){
 
          this.db.list('books').remove(data[i].key);
-         console.log(data[i].key)
+        
+         
        }
      }
     });
