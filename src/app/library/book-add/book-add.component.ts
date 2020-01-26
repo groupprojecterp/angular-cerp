@@ -19,8 +19,8 @@ export class BookAddComponent implements OnInit {
     this.isViewBooks = false;
     this.title = ''
     this.author = ''
-    this.year = -1
-    this.pages = -1
+    this.year = null
+    this.pages = null
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class BookAddComponent implements OnInit {
     this.isViewBooks = false;
   }
   addBook(){
-    if(this.title!='' && this.author!='' && this.year!=-1 && this.pages!=-1 ){
+    if(this.title!='' && this.author!='' && this.year!=null && this.pages!=null ){
       this._search.push({
         title:this.title,
         author:this.author,
