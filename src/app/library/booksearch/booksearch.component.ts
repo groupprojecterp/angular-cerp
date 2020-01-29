@@ -15,6 +15,8 @@ export class BooksearchComponent implements OnInit {
   booksKey:any[]
   bookEntered:string
   isClicked:boolean
+  clickedTitle:string
+
   constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
     this._search.getBooks().subscribe(
       data=>{
@@ -38,8 +40,8 @@ export class BooksearchComponent implements OnInit {
    }
 
   showDetails(title){
-    this.isClicked = true;
-    
+    this.isClicked = true
+    this.clickedTitle = title
   }
 
    delete(title){

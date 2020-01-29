@@ -1,10 +1,13 @@
 <input placeholder=' Search' [(ngModel)]="bookEntered" (keypress)='find()' />
 <ol *ngIf='true' class='w3-container w3-pale-blue'>
   <li *ngFor='let i of booksSearch;' class='w3-card w3-pale-yellow vertical-center w3-cell-row' style='height:40px' (click)='showDetails(i.title)'>
-    &nbsp;<p class='w3-cell' >{{i.title}}
-      
-    </p><p *ngIf='isClicked'>asdsd</p>
+    &nbsp;
+    <p class='w3-cell' >{{i.title}}</p>
     &nbsp;&nbsp;&nbsp;&nbsp;<button class='w3-button w3-red w3-cell' (click)='delete(i.title)'>-</button>
+    <div *ngIf='isClicked && i.title==clickedTitle' class='w3-card w3-grey'>
+    <p>{{i.author}}</p>
+    <p>{{i.pages}}</p>
+    </div>
   </li>
 </ol>
 <app-book-issue *ngIf='false'></app-book-issue>
