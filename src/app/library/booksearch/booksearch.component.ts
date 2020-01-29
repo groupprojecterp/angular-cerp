@@ -36,6 +36,12 @@ export class BooksearchComponent implements OnInit {
      this.isClicked = true;
      this._search.clickedTitle = title;
    }
+
+  showDetails(title){
+    this.isClicked = true;
+    
+  }
+
    delete(title){
      this._search.delete(title);
    }
