@@ -5,8 +5,9 @@ import {AngularFireDatabase} from '@angular/fire/database';
 @Injectable()
 export class BooksearchService {
   url = 'assets/books.json';
-  clickedTitle:string
+  issueKey:string
   constructor(private db:AngularFireDatabase) {
+    this.issueKey = ''
    
   }
   getBooks(){
@@ -29,16 +30,14 @@ export class BooksearchService {
     });
   }
 
-  clickedBook(){
-    return this.clickedTitle;
-  }
+  
   push(obj){
     this.db.list('books').push(obj);
   }
 
 }
 export class BooksData{
-    
+    key:string;
     author: string
     pages: number
     title: string

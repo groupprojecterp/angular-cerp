@@ -23,8 +23,8 @@ export class BookAddComponent implements OnInit {
     this.author = ''
     this.year = null
     this.pages = null
-    this.vColor = 'w3-button w3-grey w3-cell'
-    this.aColor = 'w3-button w3-grey w3-cell'
+    this.vColor = 'w3-button w3-blue w3-cell'
+    this.aColor = 'w3-button w3-blue w3-cell'
   }
 
   ngOnInit() {
@@ -32,14 +32,14 @@ export class BookAddComponent implements OnInit {
   viewBooksClick(){
     this.isViewBooks = !this.isViewBooks
     this.isAddBook = false;
-    this.vColor = 'w3-button w3-blue w3-cell'
-    this.aColor = 'w3-button w3-grey w3-cell'
+    this.vColor = 'w3-button w3-grey w3-cell'
+    this.aColor = 'w3-button w3-blue w3-cell'
   }
   addBookClick(){
     this.isAddBook = !this.isAddBook
     this.isViewBooks = false;
-    this.vColor = 'w3-button w3-grey w3-cell'
-    this.aColor = 'w3-button w3-blue w3-cell'
+    this.vColor = 'w3-button w3-blue w3-cell'
+    this.aColor = 'w3-button w3-grey w3-cell'
   }
   addBook(){
     if(this.title!='' && this.author!='' && this.year!=null && this.pages!=null ){

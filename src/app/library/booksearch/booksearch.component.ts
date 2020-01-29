@@ -14,8 +14,8 @@ export class BooksearchComponent implements OnInit {
   booksSearch:BooksData[]
   booksKey:any[]
   bookEntered:string
-  isClicked:boolean
   clickedTitle:string
+
 
   constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
     this._search.getBooks().subscribe(
@@ -23,9 +23,15 @@ export class BooksearchComponent implements OnInit {
         this.booksSearch = new Array();
         this.booksKey = new Array();
         for(let i=0;i<data.length;i++){
-          this.booksSearch.push(data[i].payload.exportVal())
+          let b = data[i].payload.exportVal()
+          this.booksSearch.push({
+            key:data[i].key,
+            author:b.author,
+            title:b.title,
+            pages:b.pages,
+            year:b.year
+            })
          
-          this.booksKey.push(data[i])
           
         }
       
@@ -34,16 +40,20 @@ export class BooksearchComponent implements OnInit {
     
     
    }
-   clicked(title){
-     this.isClicked = true;
-     this._search.clickedTitle = title;
-   }
+   
 
   showDetails(title){
-    this.isClicked = true
-    this.clickedTitle = title
+    if(this.clickedTitle==title){
+      this.clickedTitle=''
+      this.isClicked = false
+    }else{
+      this.isClicked = true
+      this.clickedTitle = title
+      }
   }
+  issueClicked(key){
 
+  }
    delete(title){
      this._search.delete(title);
    }
@@ -56,9 +66,15 @@ export class BooksearchComponent implements OnInit {
      this.booksKey = new Array();
      for(let i=0;i<data.length;i++){
        
-       if(data[i].payload.exportVal().title.includes(book)){
-         this.booksSearch.push(data[i].payload.exportVal());
-         this.booksKey.push(data[i])
+       if(data[i].payload.exportVal().title.toLowerCase().includes(book)){
+         let b = data[i].payload.exportVal()
+         this.booksSearch.push({
+            key:data[i].key,
+            author:b.author,
+            title:b.title,
+            pages:b.pages,
+            year:b.year
+            });
          
        }
      }
