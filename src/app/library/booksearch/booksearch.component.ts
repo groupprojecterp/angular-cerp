@@ -15,7 +15,7 @@ export class BooksearchComponent implements OnInit {
   booksKey:any[]
   bookEntered:string
   clickedTitle:string
-
+  toShowIssue:boolean
 
   constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
     this._search.getBooks().subscribe(
@@ -52,7 +52,8 @@ export class BooksearchComponent implements OnInit {
       }
   }
   issueClicked(key){
-
+    this.toShowIssue = true
+    this._search.issueKey = key
   }
    delete(title){
      this._search.delete(title);

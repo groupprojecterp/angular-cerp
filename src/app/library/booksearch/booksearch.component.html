@@ -1,5 +1,5 @@
-<input placeholder=' Search' [(ngModel)]="bookEntered" (keypress)='find()' />
-<ol *ngIf='true' class='w3-container w3-pale-blue'>
+<input placeholder=' Search' [(ngModel)]="bookEntered" (keypress)='find()' *ngIf='!toShowIssue' />
+<ol *ngIf='!toShowIssue' class='w3-container w3-pale-blue'>
   <li *ngFor='let i of booksSearch;' class='w3-card w3-pale-yellow vertical-center w3-cell-row' style='height:40px' (click)='showDetails(i.title)'>
     &nbsp;
     <div class='w3-cell'>
@@ -16,4 +16,4 @@
     
   </li>
 </ol>
-<app-book-issue *ngIf='false'></app-book-issue>
+<app-book-issue *ngIf='toShowIssue'></app-book-issue>
