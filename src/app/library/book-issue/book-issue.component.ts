@@ -34,7 +34,7 @@ export class BookIssueComponent implements OnInit {
     this.pages = 300;
     this.year = 2019;
     this.date = new Date();
-    this.date.setDate(this.date.getDate()+1)
+    this.date.setDate(this.date.getDate()+10)
     this.dateString = 
     date_pipe.transform(this.date,'dd-MM-yyyy')
 
