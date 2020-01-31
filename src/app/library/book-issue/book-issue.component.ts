@@ -15,7 +15,8 @@ export class BookIssueComponent implements OnInit {
   year: number
   studentId:string
   date:Date
-  
+  dateString:string
+
   constructor(private _temp:BooksearchService ,private date_pipe:DatePipe) { 
     this._temp.getBooks().subscribe(data=>{
       for(let i=0;i<data.length;i++){
@@ -33,7 +34,10 @@ export class BookIssueComponent implements OnInit {
     this.pages = 300;
     this.year = 2019;
     this.date = new Date();
-    console.log(date_pipe.transform(this.date,'dd-MM-yyyy'))
+    this.date.setDate(this.date.getDate()+1)
+    this.dateString = 
+    date_pipe.transform(this.date,'dd-MM-yyyy')
+
 
   }
   ngDoCheck(){
