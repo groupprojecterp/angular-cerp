@@ -12,7 +12,7 @@ import { BookAddComponent } from './book-add/book-add.component';
     CommonModule,
     FormsModule
   ],
-  exports:[BooksearchComponent,BookAddComponent],
+  exports:[BooksearchComponent,BookAddComponent,BookIssueComponent],
   declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent, BookAddComponent],
   providers: [BooksearchService]
 })
