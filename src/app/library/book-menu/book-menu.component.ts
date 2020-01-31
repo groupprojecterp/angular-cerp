@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class BookMenuComponent implements OnInit {
 
   constructor() { }
-
+  width='0px'
+  
   ngOnInit() {
   }
-
+  openNav(){
+    this.width='200px'
+  }
+  closeNav(){
+    this.width='0px'
+  }
 }

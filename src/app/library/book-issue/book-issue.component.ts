@@ -22,6 +22,11 @@ export class BookIssueComponent implements OnInit {
         }
       }
     })
+    this.title = 'Harry Potter';
+    this.author = 'jk rowling';
+    this.pages = 300;
+    this.year = 2019;
+
   }
   ngDoCheck(){
     

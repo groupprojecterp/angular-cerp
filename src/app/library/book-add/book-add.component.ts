@@ -15,7 +15,7 @@ export class BookAddComponent implements OnInit {
   pages:number;
   vColor:string;
   aColor:string;
-
+  book_code:string;
   constructor(private _search:BooksearchService) { 
     this.isAddBook = false;
     this.isViewBooks = false;
@@ -47,7 +47,8 @@ export class BookAddComponent implements OnInit {
         title:this.title,
         author:this.author,
         pages:this.pages,
-        year:this.year
+        year:this.year,
+        book_code:this.book_code
         });
       this.title  = ''
       this.author = ''
