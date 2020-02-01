@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {HttpClient} from '@angular/common/http'
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
   name = '';
+  constructor(private _http:HttpClient){
+    _http.get(this.url).subscribe(data=>{
+      console.log(data);
+    });
+  }
 }
