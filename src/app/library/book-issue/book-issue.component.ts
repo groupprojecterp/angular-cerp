@@ -16,6 +16,7 @@ export class BookIssueComponent implements OnInit {
   studentId:string
   date:Date
   dateString:string
+  book_code:string
 
   constructor(private _temp:BooksearchService ,private date_pipe:DatePipe) { 
     this._temp.getBooks().subscribe(data=>{
@@ -26,6 +27,7 @@ export class BookIssueComponent implements OnInit {
           this.author = b.author
           this.pages = b.pages
           this.year = b.year 
+          this.book_code = b.book_id
         }
       }
     })
