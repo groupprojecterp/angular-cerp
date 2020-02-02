@@ -7,14 +7,34 @@ import { BooksearchService } from './booksearch/booksearch.service';
 import { FormsModule } from '@angular/forms';
 import { BookAddComponent } from './book-add/book-add.component';
 import {MatDialogModule} from '@angular/material';
-import { DialogComponent } from './dialog/dialog/dialog.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import {RouterModule,Routes} from  '@angular/router';
+
+const routes:Routes=[
+  {
+    path:'',
+    component:BooksearchComponent
+  },
+  {
+    path:'add',
+    component:BookAddComponent
+  },
+  {
+    path:'search',
+    component:BooksearchComponent
+  }
+
+]
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes)
   ],
-  exports:[BooksearchComponent,BookAddComponent,BookIssueComponent],
+  exports:[BooksearchComponent,BookAddComponent,BookIssueComponent,BookMenuComponent],
   declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent, BookAddComponent, DialogComponent],
   providers: [BooksearchService],
   entryComponents:[DialogComponent]

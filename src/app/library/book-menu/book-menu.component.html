@@ -8,14 +8,11 @@
 </div>
  <div id="mySidenav" class="sidenav w3-dark-grey" [style.width]='width' >
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-  <a href="#">Search</a>
-  <a href="#">Add Book</a>
-  <a href="#">Issue</a>
-  <a href="#">back</a>
+  <a routerLink=''>Search</a>
+  <a routerLink='/add'>Add Book</a>
+  <a >Issue</a>
 </div>
 
-<!-- Use any element to open the sidenav -->
+<router-outlet></router-outlet>
 
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 

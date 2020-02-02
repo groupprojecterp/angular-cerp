@@ -45,15 +45,21 @@ export class BookIssueComponent implements OnInit {
   }
   getStatus(){
     if(this._temp.issue_is_there){
+      this.dial()
+      this._temp.issue_is_there=false;
+    }
+    return this._temp.issue_is_there
+  }
+  dial(){
+    
         const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
 
         this.dialog.open(DialogComponent, dialogConfig);
-        this._temp.issue_is_there=false
-    }
-    return this._temp.issue_is_there
+        
+    
   }
   ngDoCheck(){
     

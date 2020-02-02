@@ -1,4 +1,4 @@
-<app-book-menu></app-book-menu>
+
 <div class='w3-container w3-card w3-cell-row issue_form'>
 <input type='text' class='w3-grey w3-input w3-cell w3-text-white' [(ngModel)]='title' readonly>
 <input type='text' class='w3-grey w3-input w3-cell w3-text-white' [(ngModel)]='author' readonly/>
@@ -8,7 +8,8 @@
 <input type='text' class='w3-light-grey w3-input w3-cell' placeholder='Student Id' [(ngModel)]='studentId'>
 <input type='text' class='w3-light-grey w3-input w3-cell' placeholder='Date' [(ngModel)]='dateString'>
 <button class='w3-blue-grey w3-button w3-margin-top' (click)='click_push()'>Issue</button>
-<p *ngIf='getStatus()'>Successful</p>
+<button class='w3-button w3-light-grey' routerLink='/search'>back</button>
+<p *ngIf='getStatus()'></p>
 
 
 </div>

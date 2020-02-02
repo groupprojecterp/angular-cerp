@@ -7,8 +7,7 @@ import {BooksearchService} from '../booksearch/booksearch.service';
   styleUrls: ['./book-add.component.css']
 })
 export class BookAddComponent implements OnInit {
-  isViewBooks:boolean;
-  isAddBook:boolean;
+  
   title:string;
   author:string;
   year:number;

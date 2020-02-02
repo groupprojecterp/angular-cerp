@@ -1,7 +1,7 @@
+
 <div class='w3-container w3-cell-row w3-pale-blue'>
-  <button class='w3-button w3-blue w3-cell' (click)='viewBooksClick()' [class]='vColor'>View Books</button>
-  <button class='w3-button w3-yellow w3-cell' (click)='addBookClick()' [class]='aColor'>Add Book</button>
-  <div *ngIf='isAddBook'>
+  
+  <div >
     <br/>
     <br/>
     <input [(ngModel)]='title' class='w3-input' placeholder=' title'/>
@@ -11,9 +11,5 @@
     <input [(ngModel)]='book_code' class='w3-input' placeholder=' book code'/>
     <button class='w3-button w3-yellow' (click)='addBook()'>Add</button>
   </div>
-  <div *ngIf='isViewBooks'>
-    <br/>
-    <br/>
-    <app-booksearch></app-booksearch>
-  </div>
+  
 </div>
