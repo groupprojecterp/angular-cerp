@@ -9,9 +9,9 @@
     <th>Date of Return</th>
   </tr>
   <tr *ngFor='let row of issueHistoryList' (click)='sendMail(row)'>
-    <td></td>
+    <td>{{row.student_name}}</td>
     <td>{{row.student_id}}</td>
-    <td></td>
+    <td>{{row.book_title}}</td>
     <td>{{row.book_id}}</td>
     <td>{{row.return_date}}</td>
   </tr>
