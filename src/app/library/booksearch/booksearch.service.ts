@@ -15,6 +15,21 @@ export class BooksearchService {
     return this.db.list('/books').snapshotChanges();
      
   }
+  issue_is_there = false
+  issue_push(item){
+   this.issue_is_there = false
+    this.db.list('/students').snapshotChanges().subscribe(data=>{
+      for(let i=0;i<data.length;i++){
+        if(item.student_id==data[i].payload.exportVal().student_id){
+          this.db.list('/issues').push(item)
+          this.issue_is_there == true
+        }
+      }
+    })
+    
+   
+    //if student id is found then push else display error
+  }
   
   delete(title){
     this.db.list('books').snapshotChanges().subscribe(data=>{

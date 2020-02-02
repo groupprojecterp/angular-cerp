@@ -37,15 +37,21 @@ export class BookIssueComponent implements OnInit {
     this.year = 2019;
     this.date = new Date();
     this.date.setDate(this.date.getDate()+10)
-    this.dateString = 
-    date_pipe.transform(this.date,'dd-MM-yyyy')
+    this.dateString = date_pipe.transform(this.date,'dd-MM-yyyy')
+    
 
 
   }
   ngDoCheck(){
     
   }
-
+  click_push(){
+    this._temp.issue_push({
+      book_id:this.book_code,
+      student_id:this.studentId,
+      return_date:this.dateString
+    })
+  }
 
   ngOnInit() {
   }
