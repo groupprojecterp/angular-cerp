@@ -23,7 +23,11 @@ export class BookIssueHistoryComponent implements OnInit {
         })
 
       }
-      this.search.getBooks().subscribe(data=>{
+      
+    
+      
+    }) 
+    this.search.getBooks().subscribe(data=>{
         for(let i=0;i<data.length;i++){
           let val = data[i].payload.exportVal()
           for(let j=0;j<this.issueHistoryList.length;i++){
@@ -43,10 +47,6 @@ export class BookIssueHistoryComponent implements OnInit {
           }
         }
       })
-    
-      
-    }) 
-    
     
 
 
