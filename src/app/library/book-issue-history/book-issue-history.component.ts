@@ -32,7 +32,7 @@ export class BookIssueHistoryComponent implements OnInit {
           let val = data[i].payload.exportVal()
           for(let j=0;j<this.issueHistoryList.length;i++){
             if(val.book_id==this.issueHistoryList[j].book_id){
-              this.issueHistoryList[j].book_title = val.title
+              this.issueHistoryList[j].book_title  val.title
             }
           }
         }
