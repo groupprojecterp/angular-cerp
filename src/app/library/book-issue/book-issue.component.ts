@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksearchService} from '../booksearch/booksearch.service';
 import { DatePipe } from '@angular/common';
-
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {DialogComponent} from "../dialog/dialog.component";
 @Component({
   selector: 'app-book-issue',
   templateUrl: './book-issue.component.html',
@@ -18,7 +19,7 @@ export class BookIssueComponent implements OnInit {
   dateString:string
   book_code:string
 
-  constructor(private _temp:BooksearchService ,private date_pipe:DatePipe) { 
+  constructor(private _temp:BooksearchService ,private date_pipe:DatePipe,private dialog:MatDialog) { 
     this._temp.getBooks().subscribe(data=>{
       for(let i=0;i<data.length;i++){
         if(data[i].key==this._temp.issueKey){
@@ -42,6 +43,18 @@ export class BookIssueComponent implements OnInit {
 
 
   }
+  getStatus(){
+    if(this._temp.issue_is_there){
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+
+        this.dialog.open(DialogComponent, dialogConfig);
+        this._temp.issue_is_there=false
+    }
+    return this._temp.issue_is_there
+  }
   ngDoCheck(){
     
   }
@@ -51,6 +64,7 @@ export class BookIssueComponent implements OnInit {
       student_id:this.studentId,
       return_date:this.dateString
     })
+    
   }
 
   ngOnInit() {

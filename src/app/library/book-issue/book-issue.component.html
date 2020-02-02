@@ -8,5 +8,7 @@
 <input type='text' class='w3-light-grey w3-input w3-cell' placeholder='Student Id' [(ngModel)]='studentId'>
 <input type='text' class='w3-light-grey w3-input w3-cell' placeholder='Date' [(ngModel)]='dateString'>
 <button class='w3-blue-grey w3-button w3-margin-top' (click)='click_push()'>Issue</button>
+<p *ngIf='getStatus()'>Successful</p>
+
 
 </div>

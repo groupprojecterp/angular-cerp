@@ -22,7 +22,7 @@ export class BooksearchService {
       for(let i=0;i<data.length;i++){
         if(item.student_id==data[i].payload.exportVal().student_id){
           this.db.list('/issues').push(item)
-          this.issue_is_there == true
+          this.issue_is_there = true
         }
       }
     })
