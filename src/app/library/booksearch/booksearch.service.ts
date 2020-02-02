@@ -9,6 +9,7 @@ export class BooksearchService {
   constructor(private db:AngularFireDatabase) {
     this.issueKey = ''
    
+
   }
   getIssues(){
     return this.db.list('/issues').snapshotChanges();

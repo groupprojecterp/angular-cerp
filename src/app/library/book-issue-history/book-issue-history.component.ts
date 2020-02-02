@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksearchService} from '../booksearch/booksearch.service';
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-book-issue-history',
   templateUrl: './book-issue-history.component.html',
@@ -8,7 +9,7 @@ import {BooksearchService} from '../booksearch/booksearch.service';
 export class BookIssueHistoryComponent implements OnInit {
   issueHistoryList:IssueHistoryObj[]
 
-  constructor(private search:BooksearchService) {
+  constructor(private search:BooksearchService,private http:HttpClient) {
     
     search.getIssues().subscribe(data=>{
       this.issueHistoryList = new Array()
@@ -19,7 +20,8 @@ export class BookIssueHistoryComponent implements OnInit {
           book_id:val.book_id,
           return_date:val.return_date,
           book_title:'',
-          student_name:''
+          student_name:'',
+          email:''
         })
 
       }
@@ -32,7 +34,7 @@ export class BookIssueHistoryComponent implements OnInit {
           let val = data[i].payload.exportVal()
           for(let j=0;j<this.issueHistoryList.length;i++){
             if(val.book_id==this.issueHistoryList[j].book_id){
-              this.issueHistoryList[j].book_title  val.title
+              this.issueHistoryList[j].book_title = val.title
             }
           }
         }
@@ -43,6 +45,7 @@ export class BookIssueHistoryComponent implements OnInit {
           for(let j=0;j<this.issueHistoryList.length;i++){
             if(val.student_id==this.issueHistoryList[j].student_id){
               this.issueHistoryList[j].student_id = val.name
+              this.issueHistoryList[j].email = val.email
             }
           }
         }
@@ -54,6 +57,11 @@ export class BookIssueHistoryComponent implements OnInit {
 
   ngOnInit() {
   }
+  sendMail(row){
+    let url = 'https://us-central1-college-erp-668a1.cloudfunctions.net/sendMail?'
+    url = url+'dest='+row.email
+     this.http.get('dest=gudgudbadbadnew@gmail.com&title=%27harry%20potter%27&name=mustafa&date=22-22-20').subscribe()
+  }
 
 }
 interface IssueHistoryObj{
@@ -62,4 +70,5 @@ interface IssueHistoryObj{
   book_title:string
   book_id:string
   return_date:string
+  email:string
 }
