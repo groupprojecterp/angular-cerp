@@ -10,6 +10,7 @@ import {MatDialogModule} from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {RouterModule,Routes} from  '@angular/router';
+import { BookIssueHistoryComponent } from './book-issue-history/book-issue-history.component';
 
 const routes:Routes=[
   {
@@ -23,6 +24,10 @@ const routes:Routes=[
   {
     path:'search',
     component:BooksearchComponent
+  },
+  {
+    path:'history',
+    component:BookIssueHistoryComponent
   }
 
 ]
@@ -35,7 +40,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes)
   ],
   exports:[BooksearchComponent,BookAddComponent,BookIssueComponent,BookMenuComponent],
-  declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent, BookAddComponent, DialogComponent],
+  declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent, BookAddComponent, DialogComponent, BookIssueHistoryComponent],
   providers: [BooksearchService],
   entryComponents:[DialogComponent]
 })

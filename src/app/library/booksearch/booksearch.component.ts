@@ -29,7 +29,8 @@ export class BooksearchComponent implements OnInit {
             author:b.author,
             title:b.title,
             pages:b.pages,
-            year:b.year
+            year:b.year,
+            book_id:b.book_id
             })
          
           
@@ -74,7 +75,8 @@ export class BooksearchComponent implements OnInit {
             author:b.author,
             title:b.title,
             pages:b.pages,
-            year:b.year
+            year:b.year,
+            book_id:b.book_id
             });
          
        }
