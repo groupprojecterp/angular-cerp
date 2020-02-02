@@ -64,5 +64,4 @@ export class BooksData{
     pages: number
     title: string
     year: number
-  
 }

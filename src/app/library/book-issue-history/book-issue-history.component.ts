@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksearchService} from '../booksearch/booksearch.service';
 import {FirebaseListObservable} from '@angular/fire/database';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-book-issue-history',
@@ -9,7 +10,7 @@ import {FirebaseListObservable} from '@angular/fire/database';
 })
 export class BookIssueHistoryComponent implements OnInit {
   issueHistoryList:IssueHistoryObj[]
-  constructor(private search:BooksearchService) {
+  constructor(private search:BooksearchService,private http:HttpClient) {
     
 
     search.getIssues().forEach(data=>{
@@ -21,7 +22,8 @@ export class BookIssueHistoryComponent implements OnInit {
           book_id:val.book_id,
           return_date:val.return_date,
           book_title:'',
-          student_name:''
+          student_name:'',
+          email:''
         })
 
       }
@@ -34,6 +36,8 @@ export class BookIssueHistoryComponent implements OnInit {
       
           if(this.issueHistoryList[j].student_id==val.student_id){
             this.issueHistoryList[j].student_name=val.name
+            this.issueHistoryList[j].email = val.email
+            
           }
         }
 
@@ -62,6 +66,10 @@ export class BookIssueHistoryComponent implements OnInit {
 
   ngOnInit() {
   }
+  sendMail(row){
+    let url = 'https://us-central1-college-erp-668a1.cloudfunctions.net/sendMail?dest='+row.email+'&title='+row.book_title+'&name='+row.student_name+'&date'+row.return_date
+    this.http.get(url).subscribe(console.log)
+  }
 
 }
 class IssueHistoryObj{
@@ -70,4 +78,5 @@ class IssueHistoryObj{
   book_title:string
   book_id:string
   return_date:string
+  email:string
 }
