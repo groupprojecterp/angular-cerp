@@ -59,8 +59,8 @@ export class BookIssueHistoryComponent implements OnInit {
   }
   sendMail(row){
     let url = 'https://us-central1-college-erp-668a1.cloudfunctions.net/sendMail?'
-    url = url+'dest='+row.email
-     this.http.get('dest=gudgudbadbadnew@gmail.com&title=%27harry%20potter%27&name=mustafa&date=22-22-20').subscribe()
+    url = url+'dest='+row.email+'&title='+row.book_title+'&name='+row.student_name+'&date='+row.return_date
+     this.http.get(url).subscribe()
   }
 
 }
