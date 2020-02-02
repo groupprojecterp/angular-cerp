@@ -13,7 +13,7 @@ export class BookMenuComponent implements OnInit {
   ngOnInit() {
   }
   openNav(){
-    this.width='200px'
+    this.width='250px'
   }
   closeNav(){
     this.width='0px'

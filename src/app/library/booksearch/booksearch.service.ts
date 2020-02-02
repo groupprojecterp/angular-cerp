@@ -10,6 +10,12 @@ export class BooksearchService {
     this.issueKey = ''
    
   }
+  getIssues(){
+    return this.db.list('/issues').snapshotChanges();
+  }
+  getStudents(){
+    return this.db.list('/students').snapshotChanges();
+  }
   getBooks(){
     
     return this.db.list('/books').snapshotChanges();
