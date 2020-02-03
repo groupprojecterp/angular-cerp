@@ -23,6 +23,7 @@ export class BooksearchService {
      
   }
   issue_is_there = false
+
   issue_push(item){
    this.issue_is_there = false
     this.db.list('/students').snapshotChanges().subscribe(data=>{
@@ -37,7 +38,10 @@ export class BooksearchService {
    
     //if student id is found then push else display error
   }
-  
+  return_is_there = false
+
+
+
   delete(title){
     this.db.list('books').snapshotChanges().subscribe(data=>{
         for(let i=0;i<data.length;i++){
