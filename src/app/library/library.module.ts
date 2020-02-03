@@ -11,6 +11,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {RouterModule,Routes} from  '@angular/router';
 import { BookIssueHistoryComponent } from './book-issue-history/book-issue-history.component';
+import { BookReturnComponent } from './book-return/book-return.component';
 
 const routes:Routes=[
   {
@@ -28,6 +29,10 @@ const routes:Routes=[
   {
     path:'history',
     component:BookIssueHistoryComponent
+  },
+  {
+    path:'return',
+    component:BookReturnComponent
   }
 
 ]
@@ -40,7 +45,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes)
   ],
   exports:[BooksearchComponent,BookAddComponent,BookIssueComponent,BookMenuComponent],
-  declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent, BookAddComponent, DialogComponent, BookIssueHistoryComponent],
+  declarations: [BooksearchComponent, BookIssueComponent, BookMenuComponent, BookAddComponent, DialogComponent, BookIssueHistoryComponent, BookReturnComponent],
   providers: [BooksearchService],
   entryComponents:[DialogComponent]
 })
