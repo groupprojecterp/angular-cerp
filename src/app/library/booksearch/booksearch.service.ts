@@ -18,9 +18,7 @@ export class BooksearchService {
     return this.db.list('/students').snapshotChanges();
   }
   getBooks(){
-    
     return this.db.list('/books').snapshotChanges();
-     
   }
   issue_is_there = false
 

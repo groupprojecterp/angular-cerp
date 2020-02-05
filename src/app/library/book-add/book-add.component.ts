@@ -15,6 +15,7 @@ export class BookAddComponent implements OnInit {
   vColor:string;
   aColor:string;
   book_code:string;
+  number:number;
   constructor(private _search:BooksearchService) { 
     this.isAddBook = false;
     this.isViewBooks = false;
@@ -22,10 +23,15 @@ export class BookAddComponent implements OnInit {
     this.author = ''
     this.year = null
     this.pages = null
-    this.vColor = 'w3-button w3-blue w3-cell'
+    this.vColor = 'w3-button w3-blue w3s-cell'
     this.aColor = 'w3-button w3-blue w3-cell'
+    this.number = 0
   }
-
+  onKeyPress(){
+    if(this.number<0){
+      this.number = 0
+    }
+  }
   ngOnInit() {
   }
   viewBooksClick(){
