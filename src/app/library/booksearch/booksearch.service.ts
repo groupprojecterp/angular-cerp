@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable()
 export class BooksearchService {
   url = 'assets/books.json';
   issueKey:string
-  constructor(private db:AngularFireDatabase) {
+  constructor(private db:AngularFirestore) {
     this.issueKey = ''
-   
+    
+    
 
   }
   getIssues(){
@@ -24,16 +25,24 @@ export class BooksearchService {
 
   issue_push(item){
    this.issue_is_there = false
-    this.db.list('/students').snapshotChanges().subscribe(data=>{
+   let ref_issues = this.db.collection('issues')
+   let ref_students = this.db.collection('students',ref=>ref.where('student_id','==',item.student_id))
+   ref_students.get().forEach(data=>{
+     if (data.size==1){
+       ref_issues.add(ie)
+     }
+   })
+    
+    
+    /*this.db.list('/students').snapshotChanges().subscribe(data=>{
       for(let i=0;i<data.length;i++){
         if(item.student_id==data[i].payload.exportVal().student_id){
           console.log(this.db.list('/issues').push(item),'assad')
           this.issue_is_there = true
-          
         }
       }
     })
-    
+    */
    
     //if student id is found then push else display error
   }
