@@ -13,13 +13,13 @@ export class BooksearchService {
 
   }
   getIssues(){
-    return this.db.list('/issues').snapshotChanges();
+    return this.db.collection('issues');
   }
   getStudents(){
-    return this.db.list('/students').snapshotChanges();
+    return this.db.collection('students');
   }
   getBooks(){
-    return this.db.list('/books').snapshotChanges();
+    return this.db.collection('books');
   }
   issue_is_there = false
 
@@ -29,7 +29,7 @@ export class BooksearchService {
    let ref_students = this.db.collection('students',ref=>ref.where('student_id','==',item.student_id))
    ref_students.get().forEach(data=>{
      if (data.size==1){
-       ref_issues.add(ie)
+       ref_issues.add(item)
      }
    })
     
@@ -61,22 +61,18 @@ export class BooksearchService {
 
 
   delete(title){
-    this.db.list('books').snapshotChanges().subscribe(data=>{
-        for(let i=0;i<data.length;i++){
-       
-       if(data[i].payload.exportVal().title.includes(title)){
-
-         this.db.list('books').remove(data[i].key);
-        
-         
-       }
-     }
-    });
+    let ref = this.db.collection('books',r=>r.where('title','==',title))
+    ref.snapshotChanges().subscribe(d=>{
+      let id = d.map(dx=>dx.payload.doc.id)[0]
+      if (id!=''){
+      ref.doc(id).delete()
+      }
+    })
   }
 
   
   push(obj){
-    this.db.list('books').push(obj);
+    this.db.collection('books').add(obj);
   }
 
 }

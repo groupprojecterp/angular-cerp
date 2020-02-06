@@ -18,31 +18,15 @@ export class BooksearchComponent implements OnInit {
   toShowIssue:boolean
 
   constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
-    this._search.getBooks().subscribe(
-      data=>{
-        this.booksSearch = new Array();
-        this.booksKey = new Array();
-        for(let i=0;i<data.length;i++){
-          let b = data[i].payload.exportVal()
-          this.booksSearch.push({
-            key:data[i].key,
-            author:b.author,
-            title:b.title,
-            pages:b.pages,
-            year:b.year,
-            book_id:b.book_id
-            })
-         
-          
-        }
-      
-      }
-    );
+    
+    this._search.getBooks().valueChanges().forEach(d=>{
+      this.booksSearch = d
+    })
     
     
    }
-   
-
+  
+  isClicked:boolean;
   showDetails(title){
     if(this.clickedTitle==title){
       this.clickedTitle=''

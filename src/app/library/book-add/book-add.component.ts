@@ -53,13 +53,15 @@ export class BookAddComponent implements OnInit {
         author:this.author,
         pages:this.pages,
         year:this.year,
-        book_id:this.book_code
+        book_id:this.book_code,
+        quantity:this.number
         });
       this.title  = ''
       this.author = ''
       this.pages  = null
       this.year   = null
       this.book_code=''
+      this.number = 0
     }
   }
 
