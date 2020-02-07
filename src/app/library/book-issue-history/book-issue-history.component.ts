@@ -13,7 +13,7 @@ export class BookIssueHistoryComponent implements OnInit {
   constructor(private search:BooksearchService,private http:HttpClient) {
     
 
-    search.getIssues().snapshotChanges().subscibe(data=>{
+    search.getIssues().snapshotChanges().subscribe(data=>{
       this.issueHistoryList = new Array()
       data.map(i=>i.payload.doc.data()).forEach(i=>this.issueHistoryList.push({
           student_id:i.student_id,
