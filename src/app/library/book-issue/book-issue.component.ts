@@ -21,11 +21,19 @@ export class BookIssueComponent implements OnInit {
 
   constructor(private _temp:BooksearchService ,private date_pipe:DatePipe,private dialog:MatDialog) { 
     
-    this._temp.getBooks().snapshotChanges().
-    this.title = 'Harry Potter';
-    this.author = 'jk rowling';
-    this.pages = 300;
-    this.year = 2019;
+    this._temp.getBooks().snapshotChanges().subscribe(data=>{
+      let book = data.map(d=>
+        d.payload.doc.data())
+      book = book.find(i=>i.book_id==this._temp.issueKey)
+      
+      this.title = book.title
+      this.author = book.author
+      this.pages = book.pages
+      this.year = book.year
+      this.book_code = book.book_id 
+      console.log(this.title,book)
+    })
+    
     this.date = new Date();
     this.date.setDate(this.date.getDate()+10)
     this.dateString = date_pipe.transform(this.date,'dd-MM-yyyy')

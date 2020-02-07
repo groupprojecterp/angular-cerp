@@ -17,10 +17,12 @@ export class BooksearchComponent implements OnInit {
   clickedTitle:string
   toShowIssue:boolean
 
-  constructor(private _search:BooksearchService,private db:AngularFireDatabase,dbstore:AngularFirestore) {
+  constructor(private _search:BooksearchService) {
     
-    this._search.getBooks().valueChanges().forEach(d=>{
-      this.booksSearch = d
+    this._search.getBooks().snapshotChanges().subscribe(data=>{
+      this.booksSearch = data.map(d=>{
+        return d.payload.doc.data()
+      })
     })
     
     
