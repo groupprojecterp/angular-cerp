@@ -27,6 +27,10 @@ export class BooksearchService {
    this.issue_is_there = false
    let ref_issues = this.db.collection('issues')
    let ref_students = this.db.collection('students',ref=>ref.where('student_id','==',item.student_id))
+   let ref_book = this.db.collection('books',r=>r.where('book_id','==',item.book_id).limit(1))
+   ref_book.snapshotChanges().forEach(b=>ref_book.doc(b[0].payload.doc.id).update({
+     quantity:b[0].quantity-1
+   }))
    ref_students.get().forEach(data=>{
      if (data.size==1){
        ref_issues.add(item)

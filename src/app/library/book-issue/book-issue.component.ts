@@ -20,18 +20,8 @@ export class BookIssueComponent implements OnInit {
   book_code:string
 
   constructor(private _temp:BooksearchService ,private date_pipe:DatePipe,private dialog:MatDialog) { 
-    this._temp.getBooks().subscribe(data=>{
-      for(let i=0;i<data.length;i++){
-        if(data[i].key==this._temp.issueKey){
-          let b = data[i].payload.exportVal()
-          this.title = b.title
-          this.author = b.author
-          this.pages = b.pages
-          this.year = b.year 
-          this.book_code = b.book_id
-        }
-      }
-    })
+    
+    this._temp.getBooks().snapshotChanges().
     this.title = 'Harry Potter';
     this.author = 'jk rowling';
     this.pages = 300;

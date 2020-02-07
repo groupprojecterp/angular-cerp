@@ -44,7 +44,7 @@ export class BooksearchComponent implements OnInit {
      this._search.delete(title);
    }
    find(){
-     this._search.getBooks().subscribe
+     this._search.getBooks().snapshotChanges().forEach
      (data=>this.find_book(data,this.bookEntered));
    }
    find_book(data,book){
@@ -52,8 +52,8 @@ export class BooksearchComponent implements OnInit {
      this.booksKey = new Array();
      for(let i=0;i<data.length;i++){
        
-       if(data[i].payload.exportVal().title.toLowerCase().includes(book)){
-         let b = data[i].payload.exportVal()
+       if(data[i].title.toLowerCase().includes(book)){
+         let b = data[i]
          this.booksSearch.push({
             key:data[i].key,
             author:b.author,
