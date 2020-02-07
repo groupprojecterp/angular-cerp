@@ -13,51 +13,36 @@ export class BookIssueHistoryComponent implements OnInit {
   constructor(private search:BooksearchService,private http:HttpClient) {
     
 
-    search.getIssues().forEach(data=>{
+    search.getIssues().snapshotChanges().subscibe(data=>{
       this.issueHistoryList = new Array()
-      for(let i=0;i<data.length;i++){
-        let val = data[i].payload.exportVal()
-        this.issueHistoryList.push({
-          student_id:val.student_id,
-          book_id:val.book_id,
-          return_date:val.return_date,
+      data.map(i=>i.payload.doc.data()).forEach(i=>this.issueHistoryList.push({
+          student_id:i.student_id,
+          book_id:i.book_id,
+          return_date:i.return_date,
           book_title:'',
           student_name:'',
           email:''
+        }))
+      
+      
+      search.getStudents().snapshotChanges().subscibe(data=>{
+        this.issueHistoryList.forEach(issue=>{
+          data.map(i=>i.payload.doc.data()).forEach(j=>{
+            if (issue.student_id==j.student_id){
+              issue.student_name = j.name
+            }
+          })
         })
-
-      }
-      
-      search.getStudents().forEach(data=>{
-      for(let i=0;i<data.length;i++){
-        var val = data[i].payload.exportVal()
-        
-        for(let j=0;j<this.issueHistoryList.length;j++){
-      
-          if(this.issueHistoryList[j].student_id==val.student_id){
-            this.issueHistoryList[j].student_name=val.name
-            this.issueHistoryList[j].email = val.email
-            
-          }
-        }
-
-      }
-
-    }) 
-    search.getBooks().forEach(data=>{
-      for(let i=0;i<data.length;i++){
-        var val = data[i].payload.exportVal()
-        
-        for(let j=0;j<this.issueHistoryList.length;j++){
-      
-          if(this.issueHistoryList[j].book_id==val.book_id){
-            this.issueHistoryList[j].book_title=val.title
-          }
-        }
-
-      }
-
-    })
+      }) 
+      search.getBooks().snapshotChanges().subscibe(data=>{
+          this.issueHistoryList.forEach(issue=>{
+            data.map(i=>i.payload.doc.data()).forEach(j=>{
+              if (issue.book_id==j.book_id){
+                issue.book_title = j.title
+              }
+            })
+          })
+      }) 
     }) 
      
 
